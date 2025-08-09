@@ -1,7 +1,8 @@
 'use client'
+import TodoForm from "@/components/TodoForm";
 
 export default function Home() {
   return (
-   <div>hello</div>
+   <TodoForm addTodo={add}/>
   );
 }
