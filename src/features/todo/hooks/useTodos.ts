@@ -12,8 +12,6 @@ export const useTodos = () => {
   useEffect(() => { setTodos(safeLocalStorage.get<Todo[]>(KEY, [])) }, [])
   useEffect(() => {safeLocalStorage.set(KEY, todos)} , [todos])
 
-  
-
   const add = ( text: string) => {
     setTodos(prev => [{id: String(Date.now()), text, isDone: false}, ...prev])
   }
