@@ -3,10 +3,10 @@ import { useEffect, useRef, useState } from "react";
 
 type Props = {
   onSubmit:(text: string) => void;
-  placeholder: string;
-  autoFocus: boolean;
-  disabled: boolean;
-  className: string;
+  placeholder?: string;
+  autoFocus?: boolean;
+  disabled?: boolean;
+  className?: string;
 }
 
 export default function TodoForm({ 
@@ -31,9 +31,26 @@ export default function TodoForm({
 
   return(
 
-    <form onSubmit={handleSubmit} >
-      <input ref={inputRef} value={text} placeholder={placeholder} disabled={disabled} />
-      <button>追加</button>
+    <form onSubmit={handleSubmit} className={`flex items-start gap-2 ${className}`}>
+      <div className="flex-1">
+      <input 
+        ref={inputRef} 
+        value={text} 
+        placeholder={placeholder} 
+        disabled={disabled} 
+        onChange={(e) => {
+          setText(e.target.value); 
+          if(error) setError(null)
+        }}
+        className="w-full rounded border px-3 py-2 outline-none focus:ring"
+        aria-label="新規タスク"
+      />
+      {error && <p className="mt-1 text-sm text-red-600">{error}</p>}
+      </div>
+      <button 
+        type="submit"
+        disabled={disabled || !text.trim()}
+        className="rounded bg-blue-600 px-4 py-2 text-white disabled:opacity-50">追加</button>
     </form>
   )
 }
