@@ -6,9 +6,14 @@ export default function Home() {
     const {todos, add, toggle, remove } = useTodos()
 
   return (
-    <main>
+    <main className="mx-auto mt-10 max-w-md px-4">
       <h1>📝 ToDo List</h1>
-      <TodoForm addTodo={add}/>
+      <TodoForm 
+        onSubmit={add} 
+        autoFocus
+        placeholder="タスクを入力"
+        disabled={false}
+      />
 
     </main>
   );
